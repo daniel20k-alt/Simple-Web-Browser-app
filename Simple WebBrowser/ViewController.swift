@@ -21,8 +21,15 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New page", style: .plain, target: self, action: #selector(openTapped))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(openTapped))
         
+        // creating the navigation loader UIProgressView
+        let addNewPage = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTapped))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+        
+        toolbarItems = [spacer, refresh, addNewPage]
+        navigationController?.isToolbarHidden = false
         
         let url = URL(string: "https://www.apple.com")!
         webView.load(URLRequest(url: url))
