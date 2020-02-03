@@ -25,8 +25,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .plain, target: self, action: #selector(openTapped))
         
-        // creating the navigation loader UIProgressView
+ 
+                // creating the forward, back and newPage buttons
+        let goForward = UIBarButtonItem(title: "<", style: .plain, target: webView, action: #selector(webView.goForward)
+        let goBack = UIBarButtonItem(title: ">", style: .plain, target: webView, action: #selector(webView.goBack))
         let addNewPage = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTapped))
+              
+                // creating the navigation loader UIProgressView
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
@@ -34,8 +39,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
         progressView.sizeToFit()
         let progressViewButton = UIBarButtonItem(customView: progressView)
         
-        toolbarItems = [progressViewButton, spacer, refresh, addNewPage]
+        toolbarItems = [progressViewButton, goBack, goForward, spacer, refresh, addNewPage]
         navigationController?.isToolbarHidden = false
+       
+        // adding KVO - key value observer
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
         let url = URL(string: "https://www.apple.com")!
         webView.load(URLRequest(url: url))
@@ -61,6 +69,16 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         title = webView.title
     }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            progressView.progress = Float(webView.estimatedProgress)
+        }
+    }
+    
+    
+    
+    
     
 }
 
