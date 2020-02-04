@@ -27,8 +27,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
  
                 // creating the forward, back and newPage buttons
-        let goForward = UIBarButtonItem(title: "<", style: .plain, target: webView, action: #selector(webView.goForward)
-        let goBack = UIBarButtonItem(title: ">", style: .plain, target: webView, action: #selector(webView.goBack))
+        let goForward = UIBarButtonItem(title: "Next >", style: .plain, target: webView, action: #selector(webView.goForward))
+        let goBack = UIBarButtonItem(title: "< Back", style: .plain, target: webView, action: #selector(webView.goBack))
         let addNewPage = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openTapped))
               
                 // creating the navigation loader UIProgressView
