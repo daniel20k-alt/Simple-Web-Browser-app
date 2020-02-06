@@ -2,7 +2,7 @@
 
 The sole purpose of the project was to learn the the basics of the WebKit framework, as well as apply many of its browser features in a handy app.
 
-
+## App information
 ### About the App
 
 The app, althought with more of a testing purpose, will serve as a great anti-procrastinating tool. The basic principle of the app would be that a user has some pre-defined websites that it would be able to access. The browser would not allow surfing the web outside the website that a user is allowed to visit. 
@@ -22,6 +22,14 @@ Currently, the landing page default is set to Google. Otherwise, the app is set 
 ```
 
 Although when accesing the above links the user would be limited to only acces urls within those websites, the restriction would not apply when searching on Google, hence that would make accessing the search results provided by Google impossible.
+
+
+### To add
+
++ limitation to not go outside the provided link
++ UI is to be updated into a more styled one. 
++ app icon
++ settings menu (to add websites)
 
 
 ## License
